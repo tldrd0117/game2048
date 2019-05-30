@@ -69,7 +69,7 @@ class TableState:
 
     def filterImpossibleAction(self, action):
         left, up, right, down = self.rule()
-        print(left, up, right, down)
+        # print(left, up, right, down)
 
         if left:
             if action == 0:
@@ -174,9 +174,9 @@ class TableState:
             if self.table[j][col] == self.table[j+1][col]:
                 self.table[j][col] = self.table[j][col]*2
                 self.table[j+1][col] = 0
+                mergeScore += self.table[j][col]
                 self.upTableDeleteEmptySpace(col)
                 mergeCount+=1
-                mergeScore = self.table[j][col]
 
         if mergeCount > 0:
             return mergeCount, mergeScore
@@ -192,9 +192,9 @@ class TableState:
             if self.table[row][j] == self.table[row][j+1]:
                 self.table[row][j] = self.table[row][j]*2
                 self.table[row][j+1] = 0
+                mergeScore += self.table[row][j]
                 self.leftTableDeleteEmptySpace(row)
                 mergeCount+=1
-                mergeScore = self.table[row][j]
 
         if mergeCount > 0:
             return mergeCount, mergeScore
@@ -210,9 +210,9 @@ class TableState:
             if self.table[j][col] == self.table[j-1][col]:
                 self.table[j][col] = self.table[j][col]*2
                 self.table[j-1][col] = 0
+                mergeScore+=self.table[j][col]
                 self.downTableDeleteEmptySpace(col)
                 mergeCount+=1
-                mergeScore+=self.table[j][col]
 
         if mergeCount > 0:
             return mergeCount, mergeScore
@@ -228,9 +228,9 @@ class TableState:
             if self.table[row][j] == self.table[row][j-1]:
                 self.table[row][j] = self.table[row][j]*2
                 self.table[row][j-1] = 0
+                mergeScore += self.table[row][j]
                 self.rightTableDeleteEmptySpace(row)
                 mergeCount+=1
-                mergeScore = self.table[row][j]
 
         if mergeCount > 0:
             return mergeCount, mergeScore
@@ -300,8 +300,14 @@ class TableState:
             rewardCount, rewardScore = self.down()
         else:
             print("no step")
+        # 테이블 합계를 이용한 리워드
         tableSum = np.sum(self.table)
-        return 1.0 - (self.MAX_SCORE-tableSum)/self.MAX_SCORE
+        # return 1.0 - (self.MAX_SCORE-tableSum)/self.MAX_SCORE
+
+        # 점수를 이용한 리워드
+        # return rewardScore/self.MAX_SCORE*16
+
+        return 1.0 - ((self.MAX_SCORE-tableSum))/self.MAX_SCORE + rewardScore/(self.MAX_SCORE)
         # if reward > 0:
             # return 1
         # else:
@@ -353,15 +359,35 @@ class TableState:
         newState.table = copy.deepcopy(self.table)
 
         reward = 0
+        actions = [0,1,2,3]
+        random.shuffle(actions)
+        for act in actions:
+            if act == 0:
+                if fully_left_case_num !=0 and fully_left_case_num > len(leftAction):
+                    newState, reward = self.tryAction(self.LEFT, leftAction, newState)
+                    break
+            elif act == 1:
+                if fully_up_case_num !=0 and fully_up_case_num > len(upAction):
+                    newState, reward = self.tryAction(self.UP, upAction, newState)
+                    break
+            elif act == 2:
+                if fully_right_case_num !=0 and fully_right_case_num > len(rightAction):
+                    newState, reward = self.tryAction(self.RIGHT, rightAction, newState)
+                    break
+            elif act == 3:
+                if fully_down_case_num !=0 and fully_down_case_num > len(downAction):
+                    newState, reward = self.tryAction(self.DOWN, downAction, newState)
+                    break
+
         #무언가 잘못된 것이 있음
-        if fully_left_case_num !=0 and fully_left_case_num > len(leftAction):
-            newState, reward = self.tryAction(self.LEFT, leftAction, newState)
-        elif fully_up_case_num !=0 and fully_up_case_num > len(upAction):
-            newState, reward = self.tryAction(self.UP, upAction, newState)
-        elif fully_right_case_num !=0 and fully_right_case_num > len(rightAction):
-            newState, reward = self.tryAction(self.RIGHT, rightAction, newState)
-        elif fully_down_case_num !=0 and fully_down_case_num > len(downAction):
-            newState, reward = self.tryAction(self.DOWN, downAction, newState)
+        # if fully_left_case_num !=0 and fully_left_case_num > len(leftAction):
+        #     newState, reward = self.tryAction(self.LEFT, leftAction, newState)
+        # elif fully_up_case_num !=0 and fully_up_case_num > len(upAction):
+        #     newState, reward = self.tryAction(self.UP, upAction, newState)
+        # elif fully_right_case_num !=0 and fully_right_case_num > len(rightAction):
+        #     newState, reward = self.tryAction(self.RIGHT, rightAction, newState)
+        # elif fully_down_case_num !=0 and fully_down_case_num > len(downAction):
+        #     newState, reward = self.tryAction(self.DOWN, downAction, newState)
         # newState.action = -1
         return newState, reward
 

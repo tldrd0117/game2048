@@ -4,6 +4,8 @@ import copy
 from mcts.MCTS import MCTS
 from mcts.MCTSNode import MCTSNode
 from Game2048Table import TableState
+from concurrent.futures import ThreadPoolExecutor
+import time
 
 class GameG2048:
     def __init__(self):
@@ -32,6 +34,7 @@ class GameG2048:
             reward = self.tableState.step(action)
             print("reward: ", reward)
             self.tableState.generateNum()
+    
     def mcts(self):
         self.gameInit()
         mcts = MCTS(self.tableState)
@@ -41,20 +44,38 @@ class GameG2048:
             print('before')
             # current_node = MCTSNode(current_node.state)
             current_node.state.print_table()
-            nodeAvg = mcts.UCTSEARCH(100, current_node)
-            print('action')
-            action = -1
-            index = 0
-            while action == -1:
-                action = current_node.state.filterImpossibleAction(int(nodeAvg[index]['action']))
-                if action == -1 :
-                    index+=1
-                    print("Impossible Action")
-                    continue
+            nodes = [[50,copy.deepcopy(current_node)] for _ in range(2)]
+            finals = []
+            beforeTime = time.time()
+            with ThreadPoolExecutor(max_workers=4) as executor:
+                for value in executor.map(mcts.UCTSEARCH_PARAM, nodes):
+                    action = -1
+                    index = 0
+                    while action == -1:
+                        action = current_node.state.filterImpossibleAction(int(value[index]['action']))
+                        if action == -1 :
+                            index+=1
+                            print("Impossible Action")
+                            continue
+                    finals.append(value[index])
+            print('time: ', time.time() - beforeTime)
+            nodeAvg = max(finals, key=lambda item: item['avg'])
+            action = nodeAvg['action']
+            # nodeAvg = mcts.UCTSEARCH(10, current_node)
+            # print('action')
+            # action = -1
+            # index = 0
+            # while action == -1:
+            #     action = current_node.state.filterImpossibleAction(int(nodeAvg[index]['action']))
+            #     if action == -1 :
+            #         index+=1
+            #         print("Impossible Action")
+            #         continue
+            print('action: ', action)
             reward = current_node.state.step(action)
             print("reward: ", reward)
             current_node.state.generateNum()
-            for child in current_node.children:
+            for child in nodeAvg['child']:
                 allTrue = True
                 for i in range(0,4):
                     for j in range(0,4):

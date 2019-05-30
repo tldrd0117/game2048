@@ -2,49 +2,69 @@ import math
 import random
 import logging
 import copy
+from concurrent.futures import ProcessPoolExecutor
 class MCTS:
     DEFAULT_SCALAR = 1/math.sqrt(2.0)
+    # DEFAULT_SCALAR = 1/math.sqrt(1.0)
     def __init__(self, state):
         self.state = state
         logging.basicConfig(level=logging.WARNING)
         self.logger = logging.getLogger('MyLogger')
+    def search(self, root):
+        front=self.TREEPOLICY(root)
+        reward=self.DEFAULTPOLICY(front.state)
+        self.BACKUP(front,reward)
+    def UCTSEARCH_PARAM(self, param):
+        budget = param[0]
+        root = param[1]
+        for _ in range(budget):
+            self.search(root)
+        result = self.RANKCHILD(root,0)
+        # print('resultTable')
+        # print(result[0]['child'][0].state.table)
+        # print(result[0]['avg'])
+        return result
+
     def UCTSEARCH(self, budget, root):
-        for iter in range(int(budget)):
-            front=self.TREEPOLICY(root)
-            reward=self.DEFAULTPOLICY(front.state)
-            self.BACKUP(front,reward)
+
+        for _ in range(budget):
+            self.search(root)
+            # front=self.TREEPOLICY(root)
+            # reward=self.DEFAULTPOLICY(front.state)
+            # self.BACKUP(front,reward)
+            
 
         # print(root.state.table)
         # print([ c.state.table for c in root.children])
         result = self.RANKCHILD(root,0)
-        print('resultTable')
-        print(result[0]['child'][0].state.table)
-        print(result[0]['avg'])
+        # print('resultTable')
+        # print(result[0]['child'][0].state.table)
+        # print(result[0]['avg'])
         return result
     def TREEPOLICY(self, node):
-        # tried_children=[c.state for c in node.children]
-        #현재 노드의 자식과 중복되지 않은 새로운 상태를 만든다.
-        # while node.fully_expanded() == False:
-        #     tried_children=[c.state for c in node.children]
-        #     new_state, reward = node.state.createPossibleRandomCaseChildState(tried_children)
-        #     node.add_child(new_state, reward)
-        # #자식을 반환한다
-        # return self.BESTCHILD(node)
+        tried_children=[c.state for c in node.children]
+        # 현재 노드의 자식과 중복되지 않은 새로운 상태를 만든다.
+        while node.fully_expanded() == False:
+            tried_children=[c.state for c in node.children]
+            new_state, reward = node.state.createPossibleRandomCaseChildState(tried_children)
+            node.add_child(new_state, reward)
+        #자식을 반환한다
+        return self.BESTCHILD(node)
         # self.EXPAND(node)
-        while node.state.isEndGame()==False:
-            #자식노드가 없으면 추가한다
-            if len(node.children)==0:
-                return self.EXPAND(node)
-            #탐험
-            elif random.uniform(0,1)<.5:
-                node=self.BESTCHILD(node)
-            else:
-                # 자식노드가 꽉차지 않으면 추가한다
-                if node.fully_expanded()==False:
-                    return self.EXPAND(node)
-                # 자식노드가 꽉차면 베스트 자식을 선정한다
-                else:
-                    node=self.BESTCHILD(node)
+        # while node.state.isEndGame()==False:
+        #     #자식노드가 없으면 추가한다
+        #     if len(node.children)==0:
+        #         return self.EXPAND(node)
+        #     #탐험
+        #     elif random.uniform(0,1)<.5:
+        #         node=self.BESTCHILD(node)
+        #     else:
+        #         # 자식노드가 꽉차지 않으면 추가한다
+        #         if node.fully_expanded()==False:
+        #             return self.EXPAND(node)
+        #         # 자식노드가 꽉차면 베스트 자식을 선정한다
+        #         else:
+        #             node=self.BESTCHILD(node)
         # 베스트 자식을 내보낸다
         return node
     def BESTCHILD(self, node, scalar = DEFAULT_SCALAR):
