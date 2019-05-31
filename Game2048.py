@@ -6,6 +6,7 @@ from mcts.MCTSNode import MCTSNode
 from Game2048Table import TableState
 from concurrent.futures import ThreadPoolExecutor
 import time
+import sys
 
 class GameG2048:
     def __init__(self):
@@ -44,11 +45,12 @@ class GameG2048:
             print('before')
             # current_node = MCTSNode(current_node.state)
             current_node.state.print_table()
-            nodes = [[50,copy.deepcopy(current_node)] for _ in range(2)]
+            # nodes = [[25,copy.deepcopy(current_node)] for _ in range(4)]
+            nodes = [copy.deepcopy(current_node) for _ in range(5)]
             finals = []
             beforeTime = time.time()
             with ThreadPoolExecutor(max_workers=4) as executor:
-                for value in executor.map(mcts.UCTSEARCH_PARAM, nodes):
+                for value in executor.map(mcts.UCTSEARCH_FULL, nodes):
                     action = -1
                     index = 0
                     while action == -1:
@@ -106,6 +108,7 @@ class GameG2048:
 if __name__ == "__main__":
     game = GameG2048()
     # game.simulateGameStart()
+    sys.setrecursionlimit(100000)
     game.mcts()
     
 

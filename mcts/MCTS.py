@@ -24,6 +24,12 @@ class MCTS:
         # print(result[0]['child'][0].state.table)
         # print(result[0]['avg'])
         return result
+    def UCTSEARCH_FULL(self, root):
+        budget = root.state.move_case()
+        for _ in range(budget):
+            self.search(root)
+        return self.RANKCHILD(root,0)
+
 
     def UCTSEARCH(self, budget, root):
 

@@ -306,8 +306,11 @@ class TableState:
 
         # 점수를 이용한 리워드
         # return rewardScore/self.MAX_SCORE*16
+        tableStd = np.std(self.table)
 
-        return 1.0 - ((self.MAX_SCORE-tableSum))/self.MAX_SCORE + rewardScore/(self.MAX_SCORE)
+        # print((1.0 - ((self.MAX_SCORE-tableSum)/self.MAX_SCORE))/2, (rewardScore/(self.MAX_SCORE))/2, tableStd/self.MAX_SCORE)
+
+        return ((1.0 - ((self.MAX_SCORE-tableSum)/self.MAX_SCORE))/3) + (rewardScore/(self.MAX_SCORE))/2 + (tableStd*2)/self.MAX_SCORE
         # if reward > 0:
             # return 1
         # else:
