@@ -2,7 +2,8 @@ import math
 import random
 import logging
 import copy
-from concurrent.futures import ProcessPoolExecutor
+import numpy as np
+from concurrent.futures import ThreadPoolExecutor
 class MCTS:
     DEFAULT_SCALAR = 1/math.sqrt(2.0)
     # DEFAULT_SCALAR = 1/math.sqrt(1.0)
@@ -12,7 +13,7 @@ class MCTS:
         self.logger = logging.getLogger('MyLogger')
     def search(self, root):
         front=self.TREEPOLICY(root)
-        reward=self.DEFAULTPOLICY(front.state)
+        reward=self.MULTI_POLICY(front.state)
         self.BACKUP(front,reward)
     def UCTSEARCH_PARAM(self, param):
         budget = param[0]
@@ -30,6 +31,13 @@ class MCTS:
             self.search(root)
         return self.RANKCHILD(root,0)
 
+    def UCTSEARCH_POLICY(self, root, POLICY):
+        budget = root.state.move_case()
+        for _ in range(budget):
+            front=self.TREEPOLICY(root)
+            reward=self.MULTI_POLICY(front.state)
+            self.BACKUP(front,reward)
+        return self.RANKCHILD(root,0)
 
     def UCTSEARCH(self, budget, root):
 
@@ -100,9 +108,10 @@ class MCTS:
     def getAvg(self, node, scalar=0):
         avg = {'left': [], 'up': [], 'right': [], 'down': []}
         child = {'left': [], 'up': [], 'right': [], 'down': []}
-        def avgValue(value):
-            if len(value) == 0: return 0
-            return sum(value) / len(value)
+        def average(li):
+            if len(li) == 0:
+                return 0
+            return np.average(li)
   
         for c in node.children:
             score = c.reward/c.visits + scalar* math.sqrt(2.0*math.log(node.visits)/float(c.visits))
@@ -119,10 +128,10 @@ class MCTS:
                 avg['down'].append(score)
                 child['down'].append(c)
         
-        leftAvg = {'action':0, 'avg': avgValue(avg['left']), 'child':child['left']}
-        upAvg = {'action':1, 'avg': avgValue(avg['up']), 'child':child['up']}
-        rightAvg = {'action':2, 'avg': avgValue(avg['right']), 'child':child['right']}
-        downAvg = {'action':3, 'avg': avgValue(avg['down']), 'child':child['down']}
+        leftAvg = {'action':0, 'avg': average(avg['left']), 'child':child['left']}
+        upAvg = {'action':1, 'avg': average(avg['up']), 'child':child['up']}
+        rightAvg = {'action':2, 'avg': average(avg['right']), 'child':child['right']}
+        downAvg = {'action':3, 'avg': average(avg['down']), 'child':child['down']}
         return [leftAvg, upAvg, rightAvg, downAvg]
 
     def RANKCHILD(self, node, scalar):
@@ -153,6 +162,21 @@ class MCTS:
             node.visits+=1
             node.reward+=reward
             node=node.parent
+    
+    def MULTI_POLICY(self, state):
+        states = [copy.deepcopy(state) for _ in range(1)]
+        finals = []
+        with ThreadPoolExecutor(max_workers=4) as executor:
+            for value in executor.map(self.FULL_RANDOM_STEP, states):
+                finals.append(value)
+        return np.average(finals)
+    def FULL_RANDOM_STEP(self, copyState):
+        reward = 0
+        while copyState.isEndGame()==False:
+            action = copyState.getPossibleRandomAction()
+            reward += copyState.step(action)
+            copyState.generateNum()
+        return reward
 
     def DEFAULTPOLICY(self, state):
         # print(state.isEndGame())

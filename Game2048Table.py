@@ -164,7 +164,6 @@ class TableState:
         for k in range(len(numberList)):
             self.table[row][self.height - len(numberList) + k] = numberList[k]
 
-
     def upTableMergeSpace(self, col):
         mergeCount = 0
         mergeScore = 0
@@ -177,10 +176,7 @@ class TableState:
                 mergeScore += self.table[j][col]
                 self.upTableDeleteEmptySpace(col)
                 mergeCount+=1
-
-        if mergeCount > 0:
-            return mergeCount, mergeScore
-        return 0, 0
+        return mergeCount, mergeScore
             # self.upTableMergeSpace(col)
 
     def leftTableMergeSpace(self, row):
@@ -195,10 +191,7 @@ class TableState:
                 mergeScore += self.table[row][j]
                 self.leftTableDeleteEmptySpace(row)
                 mergeCount+=1
-
-        if mergeCount > 0:
-            return mergeCount, mergeScore
-        return 0, 0
+        return mergeCount, mergeScore
             # self.leftTableMergeSpace(row)
 
     def downTableMergeSpace(self, col):
@@ -213,10 +206,7 @@ class TableState:
                 mergeScore+=self.table[j][col]
                 self.downTableDeleteEmptySpace(col)
                 mergeCount+=1
-
-        if mergeCount > 0:
-            return mergeCount, mergeScore
-        return 0, 0
+        return mergeCount, mergeScore
             # self.downTableMergeSpace(col)
 
     def rightTableMergeSpace(self, row):
@@ -231,10 +221,7 @@ class TableState:
                 mergeScore += self.table[row][j]
                 self.rightTableDeleteEmptySpace(row)
                 mergeCount+=1
-
-        if mergeCount > 0:
-            return mergeCount, mergeScore
-        return 0, 0
+        return mergeCount, mergeScore
         #     self.rightTableMergeSpace(row)
 
     def up(self):
@@ -245,9 +232,7 @@ class TableState:
             rewardCount, rewardScore = self.upTableMergeSpace(i)
             rewardCountSum += rewardCount
             rewardScoreSum += rewardScore
-        if rewardCount > 0:
-            return rewardCountSum, rewardScoreSum
-        return 0, 0
+        return rewardCountSum, rewardScoreSum
 
     def left(self):
         rewardCountSum = 0
@@ -257,9 +242,7 @@ class TableState:
             rewardCount, rewardScore = self.leftTableMergeSpace(i)
             rewardCountSum += rewardCount
             rewardScoreSum += rewardScore
-        if rewardCount > 0:
-            return rewardCountSum, rewardScoreSum
-        return 0, 0
+        return rewardCountSum, rewardScoreSum
 
     def down(self):
         rewardCountSum = 0
@@ -269,10 +252,7 @@ class TableState:
             rewardCount, rewardScore = self.downTableMergeSpace(i)
             rewardCountSum += rewardCount
             rewardScoreSum += rewardScore
-
-        if rewardCount > 0:
-            return rewardCountSum, rewardScoreSum
-        return 0, 0
+        return rewardCountSum, rewardScoreSum
 
     def right(self):
         rewardCountSum = 0
@@ -282,12 +262,9 @@ class TableState:
             rewardCount, rewardScore = self.rightTableMergeSpace(i)
             rewardCountSum += rewardCount
             rewardScoreSum += rewardScore
+        return rewardCountSum, rewardScoreSum
 
-        if rewardCount > 0:
-            return rewardCountSum, rewardScoreSum
-        return 0, 0
-
-    def step(self, action):
+    def step(self, action, isPrint=False):
         rewardCount = 0
         rewardScore = 0
         if action == 0:
@@ -300,21 +277,24 @@ class TableState:
             rewardCount, rewardScore = self.down()
         else:
             print("no step")
+        if isPrint:
+            print(rewardCount, rewardScore)
+        if rewardCount > 0:
+            return 1
+        else:
+            return 0
         # 테이블 합계를 이용한 리워드
-        tableSum = np.sum(self.table)
+        # tableSum = np.sum(self.table)
         # return 1.0 - (self.MAX_SCORE-tableSum)/self.MAX_SCORE
 
         # 점수를 이용한 리워드
         # return rewardScore/self.MAX_SCORE*16
-        tableStd = np.std(self.table)
+        # tableStd = np.std(self.table)
 
         # print((1.0 - ((self.MAX_SCORE-tableSum)/self.MAX_SCORE))/2, (rewardScore/(self.MAX_SCORE))/2, tableStd/self.MAX_SCORE)
 
-        return ((1.0 - ((self.MAX_SCORE-tableSum)/self.MAX_SCORE))/3) + (rewardScore/(self.MAX_SCORE))/2 + (tableStd*2)/self.MAX_SCORE
-        # if reward > 0:
-            # return 1
-        # else:
-            # return -1
+        # return ((1.0 - ((self.MAX_SCORE-tableSum)/self.MAX_SCORE))*TableState.param1) + ((rewardScore/(self.MAX_SCORE))*TableState.param2) + ((tableStd/self.MAX_SCORE)*TableState.param3)
+        
     
     def move_case(self):
         left, up, right, down = self.rule()
