@@ -9,6 +9,7 @@ import time
 import sys
 from mcts.record.Recorder import Recorder
 import signal
+from collections import deque
 
 class GameG2048:
     def __init__(self):
@@ -107,14 +108,14 @@ class GameG2048:
         mcts = MCTS(self.tableState)
         current_node = MCTSNode(self.tableState)
         step = 0
-        record = []
+        record = deque()
         rewards = [0]
         actions = [0]
+        score = 0
         while not current_node.state.isEndGame():
             print('before')
             # current_node = MCTSNode(current_node.state)
             current_node.state.print_table()
-            record.append({'table': current_node.state.table, 'reward': rewards[step], 'step': step, 'action': actions[step]})
             # nodes = [[25,copy.deepcopy(current_node)] for _ in range(4)]
             node = copy.deepcopy(current_node)
             finals = []
@@ -143,13 +144,19 @@ class GameG2048:
             #         print("Impossible Action")
             #         continue
             print('action: ', action)
+            history = np.array(current_node.state.table).flatten()
             reward = current_node.state.step(action)
+            next_history = np.array(current_node.state.table).flatten()
+            dead = current_node.state.isEndGame()
             rewards.append(reward)
             actions.append(action)
             print("reward: ", reward)
             step += 1
+            score += reward
             print('step: ', step)
             current_node.state.generateNum()
+            record.append((history, action, reward, next_history, dead))
+
             
             for child in nodeAvg['child']:
                 allTrue = True
@@ -163,7 +170,7 @@ class GameG2048:
 
         print('ENDGAME')
         current_node.state.print_table()
-        return np.sum(current_node.state.table), record
+        return np.sum(current_node.state.table), record, score, step
 
     def step(self, action):
         done = False

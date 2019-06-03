@@ -66,6 +66,17 @@ class TableState:
                     if i+3 < self.height and self.table[i+3][j] != 0 :
                         upMoving = True
         return leftMoving, upMoving, rightMoving, downMoving
+    
+    def maxPossibleAction(self, actions):
+        action = -1
+        index = 0
+        while action == -1:
+            action = self.filterImpossibleAction(actions[index])
+            if action == -1 :
+                index+=1
+                print("Impossible Action")
+                continue
+        return action
 
     def filterImpossibleAction(self, action):
         left, up, right, down = self.rule()
