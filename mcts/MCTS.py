@@ -35,7 +35,7 @@ class MCTS:
         budget = root.state.move_case()
         for _ in range(budget):
             front=self.TREEPOLICY(root)
-            reward=self.MULTI_POLICY(front.state)
+            reward=POLICY(front.state)
             self.BACKUP(front,reward)
         return self.RANKCHILD(root,0)
 

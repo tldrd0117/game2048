@@ -16,7 +16,7 @@ EPISODES = 50000
 class DQNAgent:
     def __init__(self, action_size):
         self.render = False
-        self.load_model = False
+        self.load_model = True
         # 상태와 행동의 크기 정의
         self.state_size = (16,)
         self.action_size = action_size
@@ -82,9 +82,9 @@ class DQNAgent:
                         #  input_shape=self.state_size))
         # model.add(Conv2D(64, (4, 4), strides=(2, 2), activation='relu'))
         # model.add(Conv2D(64, (3, 3), strides=(1, 1), activation='relu'))
-        model.add(Dense(32, activation='relu', input_shape=(16,)))
-        model.add(Dense(32, activation='relu', input_shape=(16,)))
-        model.add(Dense(32, activation='relu', input_shape=(16,)))
+        model.add(Dense(16, activation='relu', input_shape=self.state_size))
+        model.add(Dense(32, activation='relu'))
+        model.add(Dense(16, activation='relu'))
         model.add(Dense(self.action_size))
         model.summary()
         return model
@@ -96,10 +96,12 @@ class DQNAgent:
     # 입실론 탐욕 정책으로 행동 선택
     def get_action(self, history):
         if np.random.rand() <= 0.5:
-            return random.shuffle([0,1,2,3])
+            li = [0,1,2,3]
+            random.shuffle(li)
+            return np.array(li), False
         else:
             q_value = self.model.predict(history)
-            return q_value[0]
+            return np.argsort(-q_value[0]), True
 
     # 샘플 <s, a, r, s'>을 리플레이 메모리에 저장
     def append_sample(self, history, action, reward, next_history, dead):

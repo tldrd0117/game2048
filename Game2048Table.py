@@ -70,12 +70,19 @@ class TableState:
     def maxPossibleAction(self, actions):
         action = -1
         index = 0
+        step = 0
         while action == -1:
+            if step > 4:
+                print('infinity loop')
+                break
+            step+=1
             action = self.filterImpossibleAction(actions[index])
             if action == -1 :
                 index+=1
-                print("Impossible Action")
+                # print("Impossible Action")
                 continue
+        # print(action)
+        
         return action
 
     def filterImpossibleAction(self, action):

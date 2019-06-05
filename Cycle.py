@@ -10,7 +10,9 @@ from Game2048 import GameG2048
 import sys
 import copy
 from DeepLearning import DQNAgent
- 
+import os
+import signal
+
 class Cycle:
     global_step = 0
     def POLICY(self, state):
@@ -23,6 +25,7 @@ class Cycle:
         return reward
     def cycle_(self, game):
         self.agent = DQNAgent(action_size=4)
+        self.predictSum = [0,0,0,0]
         e = 0
         targetEpisode = 50000
         for _ in range(targetEpisode):
@@ -31,6 +34,7 @@ class Cycle:
             _, record, score, step = game.mcts_policy(cycle.DQN_POLICY)
             agent.appends_sample(record)
             self.global_step+=step
+            print('sum',self.predictSum)
             print(len(agent.memory), self.global_step, agent.update_target_rate, agent.train_start)
             if len(agent.memory) >= agent.train_start:
                 agent.train_model()
@@ -61,21 +65,33 @@ class Cycle:
     def DQN_POLICY(self, state):
         reward = 0
         step = 0
+        
         copyState = copy.deepcopy(state)
         while copyState.isEndGame()==False:
             step+=1
             # self.global_step +=1
-            history = np.array(copyState.table).flatten()
-            actions = self.agent.get_action(history)
-            action = state.maxPossibleAction(actions)
+            history = np.array([[y for x in copyState.table for y in x]])
+            actions, isPredicted = self.agent.get_action(history)
+            if isPredicted:
+                maxValue = np.max(actions)
+                self.predictSum[np.where(maxValue == actions)[0][0]] += 1
+            action = copyState.maxPossibleAction(actions)
+
             if action != -1:
                 reward += copyState.step(action)
                 copyState.generateNum()
+            else:
+                print('impossible')
+        print(step)
         return reward
-
+    def signal_handler(self, signal, frame):
+        self.agent.model.save_weights("./save_model/game2048_dqn.h5")
+        sys.exit(0)
 if __name__ == "__main__":
+    os.environ['KMP_DUPLICATE_LIB_OK']='True'
     game = GameG2048()
     cycle = Cycle()
+    signal.signal(signal.SIGINT, cycle.signal_handler)
     sys.setrecursionlimit(100000)
     cycle.cycle_(game)
     # _, record = game.mcts_policy(cycle.POLICY)
