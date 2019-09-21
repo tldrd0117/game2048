@@ -1,0 +1,475 @@
+From /Users/iseongjae/anaconda3/lib/python3.7/site-packages/tensorflow/python/framework/op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+From /Users/iseongjae/anaconda3/lib/python3.7/site-packages/tensorflow/python/ops/math_ops.py:3066: to_int32 (from tensorflow.python.ops.math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.cast instead.
+Summary name Total Reward/Episode is illegal; using Total_Reward/Episode instead.
+Summary name Average Max Q/Episode is illegal; using Average_Max_Q/Episode instead.
+Summary name Average Loss/Episode is illegal; using Average_Loss/Episode instead.
+predict policy
+sum [138, 8859, 545981, 276605]
+175 175 1 64
+loss [1.2451133]
+loss [3.1780114]
+loss [0.7310997]
+loss [0.9372242]
+loss [0.6080502]
+loss [0.6178767]
+loss [1.1542981]
+loss [1.1149292]
+loss [1.3013251]
+loss [0.5667113]
+episode: 1   score: 115   memory length: 175   epsilon: 0.9999910000000003   global_step: 175   average_q: 0.0   average loss: 0.06545508112226214
+random + predict policy
+sum [550, 47468, 613363, 394569]
+431 431 1 64
+loss [1.7606945]
+loss [2.2179356]
+loss [1.1403339]
+loss [0.6401294]
+loss [1.1570914]
+loss [0.70698756]
+loss [1.2146815]
+loss [0.9354386]
+loss [2.313988]
+loss [0.9190478]
+episode: 2   score: 178   memory length: 431   epsilon: 0.9999820000000006   global_step: 431   average_q: 0.0   average loss: 0.050805969163775444
+random + predict policy
+sum [704, 75047, 747476, 487155]
+629 629 1 64
+loss [1.7626917]
+loss [1.6656202]
+loss [1.1887223]
+loss [1.2346067]
+loss [1.0728482]
+loss [0.71835995]
+loss [1.6232967]
+loss [1.0102056]
+loss [1.8157909]
+loss [0.612739]
+episode: 3   score: 130   memory length: 629   epsilon: 0.9999730000000009   global_step: 629   average_q: 0.0   average loss: 0.06416606752559392
+predict policy
+sum [1108, 92841, 1110743, 844807]
+890 890 1 64
+loss [1.1151786]
+loss [2.275053]
+loss [1.477106]
+loss [1.5766876]
+loss [1.3887265]
+loss [0.9186703]
+loss [0.7699428]
+loss [0.98904777]
+loss [0.82398593]
+loss [0.9086216]
+episode: 4   score: 183   memory length: 890   epsilon: 0.9999640000000012   global_step: 890   average_q: 0.0   average loss: 0.04690812282635334
+random + predict policy
+sum [1320, 116842, 1212181, 916304]
+1050 1050 1 64
+loss [1.7581828]
+loss [0.8640362]
+loss [0.91606015]
+loss [0.47443348]
+loss [0.94620234]
+loss [1.077018]
+loss [1.2742434]
+loss [0.61687183]
+loss [1.6250932]
+loss [0.80472696]
+episode: 5   score: 116   memory length: 1050   epsilon: 0.9999550000000015   global_step: 1050   average_q: 0.0   average loss: 0.06473042704164982
+random + predict policy
+sum [1398, 136216, 1320871, 1004871]
+1233 1233 1 64
+loss [0.8445593]
+loss [1.5528301]
+loss [0.45844203]
+loss [1.1168895]
+loss [1.0056926]
+loss [0.80216277]
+loss [0.9842138]
+loss [1.1333447]
+loss [1.5080516]
+loss [1.125369]
+episode: 6   score: 127   memory length: 1233   epsilon: 0.9999460000000018   global_step: 1233   average_q: 0.0   average loss: 0.057549482811995546
+predict policy
+sum [1642, 148746, 1739394, 1315022]
+1475 1475 1 64
+loss [1.2241018]
+loss [1.164832]
+loss [0.919026]
+loss [1.1057467]
+loss [1.3929474]
+loss [0.7297261]
+loss [0.65291965]
+loss [1.3084295]
+loss [1.6931186]
+loss [1.4205531]
+episode: 7   score: 181   memory length: 1475   epsilon: 0.9999370000000021   global_step: 1475   average_q: 0.0   average loss: 0.04798099521763068
+random + predict policy
+
+From /Users/iseongjae/anaconda3/lib/python3.7/site-packages/tensorflow/python/framework/op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+From /Users/iseongjae/anaconda3/lib/python3.7/site-packages/tensorflow/python/ops/math_ops.py:3066: to_int32 (from tensorflow.python.ops.math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.cast instead.
+Summary name Total Reward/Episode is illegal; using Total_Reward/Episode instead.
+Summary name Average Max Q/Episode is illegal; using Average_Max_Q/Episode instead.
+Summary name Average Loss/Episode is illegal; using Average_Loss/Episode instead.
+predict policy
+
+From /Users/iseongjae/anaconda3/lib/python3.7/site-packages/tensorflow/python/framework/op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+From /Users/iseongjae/anaconda3/lib/python3.7/site-packages/tensorflow/python/ops/math_ops.py:3066: to_int32 (from tensorflow.python.ops.math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.cast instead.
+Summary name Total Reward/Episode is illegal; using Total_Reward/Episode instead.
+Summary name Average Max Q/Episode is illegal; using Average_Max_Q/Episode instead.
+Summary name Average Loss/Episode is illegal; using Average_Loss/Episode instead.
+predict policy
+sum [234, 12355, 740781, 396197]
+step 309
+max_number 256
+table_number_sum 632
+------------------------
+    2   128    64    16
+  256     2    16     2
+   64    16    32     4
+   16     8     4     2
+------------------------
+309 309 1 64
+loss [3.1389618]
+loss [4.206023]
+loss [2.337988]
+loss [2.6610737]
+loss [2.196485]
+loss [2.2496624]
+loss [1.3731191]
+loss [0.90642726]
+loss [1.0426452]
+loss [1.0118079]
+episode: 1   score: 221   memory length: 309   epsilon: 0.9999910000000003   global_step: 309   average_q: 0.0   average loss: 0.06836308591959932
+random + predict policy
+sum [2434, 58659, 829520, 522513]
+step 195
+max_number 128
+table_number_sum 408
+------------------------
+    2   128    32     8
+  128     2     4     2
+    8    64     8     4
+    4     8     4     2
+------------------------
+504 504 1 64
+loss [1.2045404]
+loss [1.1401994]
+loss [1.5739889]
+loss [1.1232443]
+loss [1.5378461]
+loss [1.7683202]
+loss [1.5819521]
+loss [1.018163]
+loss [1.4362355]
+loss [1.2117151]
+episode: 2   score: 133   memory length: 504   epsilon: 0.9999820000000006   global_step: 504   average_q: 0.0   average loss: 0.0697241281851744
+random + predict policy
+sum [6428, 117566, 918641, 618423]
+step 187
+max_number 128
+table_number_sum 384
+------------------------
+    2   128    16     8
+  128    32     8     4
+   32     8     4     2
+    2     4     2     4
+------------------------
+691 691 1 64
+loss [1.854071]
+loss [1.4042995]
+loss [1.0357394]
+loss [1.8386533]
+loss [1.3773917]
+loss [1.0493662]
+loss [1.5339545]
+loss [1.3682407]
+loss [0.950874]
+loss [1.4668951]
+episode: 3   score: 132   memory length: 691   epsilon: 0.9999730000000009   global_step: 691   average_q: 0.0   average loss: 0.07422184752907983
+predict policy
+sum [11344, 174858, 1145264, 1448814]
+step 316
+max_number 256
+table_number_sum 642
+------------------------
+    4   128    64    16
+  256    64    16     8
+   16    32     8     4
+    4    16     4     2
+------------------------
+1007 1007 1 64
+loss [2.651912]
+loss [1.7215898]
+loss [1.0480821]
+loss [1.9851055]
+loss [1.9457661]
+loss [1.7290968]
+loss [1.0228418]
+loss [1.2319419]
+loss [1.2145978]
+loss [1.1167314]
+episode: 4   score: 222   memory length: 1007   epsilon: 0.9999640000000012   global_step: 1007   average_q: 0.0   average loss: 0.04958121912388862
+random + predict policy
+sum [12384, 216609, 1291650, 1585965]
+step 287
+max_number 256
+table_number_sum 600
+------------------------
+  256   128    32    16
+   64     4    16     8
+   32    16     8     4
+    2     8     4     2
+------------------------
+1294 1294 1 64
+loss [1.5162735]
+loss [2.2105742]
+loss [1.2521416]
+loss [1.5069041]
+loss [1.3788769]
+loss [0.87326366]
+loss [1.0568465]
+loss [1.9314556]
+loss [1.408392]
+loss [1.0462861]
+episode: 5   score: 206   memory length: 1294   epsilon: 0.9999550000000015   global_step: 1294   average_q: 0.0   average loss: 0.04941119902640685
+random + predict policy
+sum [14151, 253842, 1384776, 1681527]
+step 200
+max_number 128
+table_number_sum 414
+------------------------
+    2   128    32    16
+  128    32    16     8
+    8    16     8     4
+    2     8     4     2
+------------------------
+1494 1494 1 64
+loss [0.5737575]
+loss [0.79526365]
+loss [0.8936007]
+loss [1.1637372]
+loss [1.1301647]
+loss [1.2965707]
+loss [1.3538649]
+loss [1.3216314]
+loss [1.2028389]
+loss [1.632201]
+episode: 6   score: 137   memory length: 1494   epsilon: 0.9999460000000018   global_step: 1494   average_q: 0.0   average loss: 0.05681815326213837
+predict policy
+sum [16208, 291579, 1583820, 2271789]
+step 187
+max_number 128
+table_number_sum 398
+------------------------
+    2   128    32     4
+  128    16     4     8
+   16    32     8     4
+    2     8     4     2
+------------------------
+1681 1681 1 64
+loss [1.1916821]
+loss [1.6184255]
+loss [0.93739927]
+loss [1.0626414]
+loss [0.6989043]
+loss [0.8714112]
+loss [0.61329997]
+loss [1.2609072]
+loss [0.99801296]
+loss [0.8627939]
+episode: 7   score: 125   memory length: 1681   epsilon: 0.9999370000000021   global_step: 1681   average_q: 0.0   average loss: 0.05409346385435625
+random + predict policy
+sum [17295, 340640, 1713839, 2413136]
+step 304
+max_number 256
+table_number_sum 630
+------------------------
+  256    64    32    16
+  128    32    16     8
+   32    16     8     4
+    4     8     4     2
+------------------------
+1985 1985 1 64
+loss [1.797424]
+loss [1.0685949]
+loss [1.4343904]
+loss [0.5530908]
+loss [0.72156465]
+loss [1.5239315]
+loss [1.246526]
+loss [0.7934679]
+loss [0.79780424]
+loss [1.2291082]
+episode: 8   score: 214   memory length: 1985   epsilon: 0.9999280000000024   global_step: 1985   average_q: 0.0   average loss: 0.03672994281116285
+random + predict policy
+sum [18124, 376864, 1826176, 2490569]
+step 199
+max_number 128
+table_number_sum 414
+------------------------
+    4   128    32     2
+  128     4     2     8
+    8     2    64     4
+    2    16     8     2
+------------------------
+2184 2184 1 64
+loss [1.5903819]
+loss [1.136693]
+loss [1.0354128]
+loss [0.65158194]
+loss [0.3559642]
+loss [2.2128978]
+loss [1.6812046]
+loss [1.0384533]
+loss [0.47052664]
+loss [0.9871175]
+episode: 9   score: 146   memory length: 2184   epsilon: 0.9999190000000027   global_step: 2184   average_q: 0.0   average loss: 0.05608157611372483
+predict policy
+sum [18826, 393096, 2055805, 2815360]
+step 108
+max_number 64
+table_number_sum 230
+------------------------
+    2    64    16     8
+   64    16     8     4
+   16     8     4     2
+    8     4     2     4
+------------------------
+2292 2292 1 64
+loss [1.0625832]
+loss [0.8286002]
+loss [1.2869115]
+loss [1.2317274]
+loss [0.8678651]
+loss [0.8768151]
+loss [1.2446475]
+loss [0.65801805]
+loss [0.46537596]
+loss [0.78755116]
+episode: 10   score: 74   memory length: 2292   epsilon: 0.999910000000003   global_step: 2292   average_q: 0.0   average loss: 0.08620458454997451
+random + predict policy
+sum [19416, 439850, 2179656, 2968407]
+step 289
+max_number 256
+table_number_sum 600
+------------------------
+    2    64    32    16
+    4    32    16     8
+  256   128     8     4
+   16     8     4     2
+------------------------
+2581 2581 1 64
+loss [2.6288524]
+loss [0.8056911]
+loss [1.1596892]
+loss [0.7677675]
+loss [0.69245106]
+loss [0.5163271]
+loss [0.9247069]
+loss [0.98269093]
+loss [0.6257912]
+loss [1.853638]
+episode: 11   score: 201   memory length: 2581   epsilon: 0.9999010000000033   global_step: 2581   average_q: 0.0   average loss: 0.03791558948767639
+random + predict policy
+sum [20032, 478074, 2268963, 3057822]
+step 161
+max_number 128
+table_number_sum 328
+------------------------
+    2    64    32    16
+  128     8     4     2
+    4    32     8     4
+    2    16     4     2
+------------------------
+2742 2742 1 64
+loss [2.1178594]
+loss [1.2206271]
+loss [1.3627843]
+loss [0.6089034]
+loss [1.4485685]
+loss [1.5741916]
+loss [0.7255231]
+loss [0.97409534]
+loss [1.0724187]
+loss [0.79638314]
+episode: 12   score: 111   memory length: 2742   epsilon: 0.9998920000000036   global_step: 2742   average_q: 0.0   average loss: 0.07392145610003738
+predict policy
+sum [20531, 497611, 2511820, 3893849]
+step 301
+max_number 256
+table_number_sum 622
+------------------------
+    2    64    32    16
+  256    32    16     8
+  128    16     8     4
+    2     4    32     2
+------------------------
+3043 3043 1 64
+loss [1.0377083]
+loss [1.1928561]
+loss [0.9768753]
+loss [1.2372129]
+loss [0.80578244]
+loss [0.90605825]
+loss [1.502388]
+loss [1.1048014]
+loss [0.65164167]
+loss [0.96688247]
+episode: 13   score: 205   memory length: 3043   epsilon: 0.9998830000000039   global_step: 3043   average_q: 0.0   average loss: 0.034492381387374725
+random + predict policy
+sum [20914, 547960, 2620715, 4033964]
+step 264
+max_number 256
+table_number_sum 548
+------------------------
+    2    64    32    16
+  256    32    16     8
+   64    16     8     4
+   16     8     4     2
+------------------------
+3307 3307 1 64
+loss [2.2501545]
+loss [0.8751757]
+loss [0.89418066]
+loss [0.67600703]
+loss [0.538237]
+loss [0.6648485]
+loss [0.69768035]
+loss [0.79389334]
+loss [0.90520585]
+loss [1.5112911]
+episode: 14   score: 189   memory length: 3307   epsilon: 0.9998740000000041   global_step: 3307   average_q: 0.0   average loss: 0.03714649266365803
+random + predict policy
+sum [21274, 584171, 2705103, 4132379]
+step 179
+max_number 128
+table_number_sum 370
+------------------------
+    8    64    32    16
+  128    32    16     8
+    8    16     8     4
+   16     8     4     2
+------------------------
+3486 3486 1 64
+loss [1.3733952]
+loss [1.1811807]
+loss [0.92950964]
+loss [1.6436913]
+loss [1.5095384]
+loss [0.6614058]
+loss [1.342793]
+loss [1.1999717]
+loss [1.0047735]
+loss [0.84532166]
+episode: 15   score: 115   memory length: 3486   epsilon: 0.9998650000000044   global_step: 3486   average_q: 0.0   average loss: 0.0653160943665318
+predict policy

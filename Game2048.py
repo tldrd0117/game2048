@@ -170,6 +170,76 @@ class GameG2048:
 
         print('ENDGAME')
         current_node.state.print_table()
+        return current_node.state.table, record, score, step
+
+    
+    def mcts_policy2(self, POLICY):
+        self.gameInit()
+        mcts = MCTS(self.tableState)
+        current_node = MCTSNode(self.tableState)
+        step = 0
+        record = deque()
+        rewards = [0]
+        actions = [0]
+        score = 0
+        while not current_node.state.isEndGame():
+            print('before')
+            # current_node = MCTSNode(current_node.state)
+            current_node.state.print_table()
+            # nodes = [[25,copy.deepcopy(current_node)] for _ in range(4)]
+            node = copy.deepcopy(current_node)
+            finals = []
+            beforeTime = time.time()
+            value = mcts.UCTSEARCH_POLICY(node, POLICY)
+            action = -1
+            index = 0
+            while action == -1:
+                action = current_node.state.filterImpossibleAction(int(value[index]['action']))
+                if action == -1 :
+                    index+=1
+                    print("Impossible Action")
+                    continue
+            finals.append(value[index])
+            print('time: ', time.time() - beforeTime)
+            nodeAvg = max(finals, key=lambda item: item['avg'])
+            action = nodeAvg['action']
+            # nodeAvg = mcts.UCTSEARCH(10, current_node)
+            # print('action')
+            # action = -1
+            # index = 0
+            # while action == -1:
+            #     action = current_node.state.filterImpossibleAction(int(nodeAvg[index]['action']))
+            #     if action == -1 :
+            #         index+=1
+            #         print("Impossible Action")
+            #         continue
+            print('action: ', action)
+            history = np.array(current_node.state.table).flatten()
+            reward = current_node.state.step(action)
+            next_history = np.array(current_node.state.table).flatten()
+            dead = current_node.state.isEndGame()
+            rewards.append(reward)
+            actions.append(action)
+            print("reward: ", reward)
+            step += 1
+            score += reward
+            print('step: ', step)
+            current_node.state.generateNum()
+            record.append((history, action, reward, next_history, dead))
+
+            
+            for child in nodeAvg['child']:
+                allTrue = True
+                for i in range(0,4):
+                    for j in range(0,4):
+                        allTrue = child.state.table[i][j] == current_node.state.table[i][j]
+                if allTrue:
+                    current_node = child
+                    break
+
+
+        print('ENDGAME')
+        current_node.state.print_table()
         return np.sum(current_node.state.table), record, score, step
 
     def step(self, action):

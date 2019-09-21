@@ -12,6 +12,34 @@ import copy
 from DeepLearning import DQNAgent
 import os
 import signal
+import logging
+import pickle
+
+logging.basicConfig(handlers=[logging.FileHandler('log/simulation1.log', 'a', 'utf-8')], level=logging.INFO, format='%(message)s')
+def printG(*msg):
+    joint = ' '.join(list(map(lambda x : str(x), msg)))
+    print(joint)
+    logging.info(joint)
+
+printG('')
+
+def printGTable(table):
+    printG("------------------------")
+    for i in range(4):
+        printG("%5d %5d %5d %5d"%(table[i][0], table[i][1], table[i][2], table[i][3]))
+    printG("------------------------")
+
+def saveDeque(data):
+    with open('data/memory.h5', 'wb') as fileObj:
+        pickle.dump(data, fileObj)
+
+def loadDeque():
+    with open('data/memory.h5', 'rb') as fileObj:
+        data = pickle.load(fileObj)
+        if data:
+            return data
+        else:
+            return None
 
 class Cycle:
     global_step = 0
@@ -30,14 +58,27 @@ class Cycle:
         targetEpisode = 50000
         for _ in range(targetEpisode):
             e += 1
+            self.recentPredictSum = [0,0,0,0]
             agent = self.agent
-            _, record, score, step = game.mcts_policy(cycle.DQN_POLICY)
+            if _ % 3 == 0:
+                printG('predict policy')
+                lastTable, record, score, step = game.mcts_policy(cycle.DQN_POLICY_PREDICT)
+            else:
+                printG('random + predict policy')
+                lastTable, record, score, step = game.mcts_policy(cycle.DQN_POLICY)
             agent.appends_sample(record)
             self.global_step+=step
-            print('sum',self.predictSum)
-            print(len(agent.memory), self.global_step, agent.update_target_rate, agent.train_start)
+            printG('predictSum',self.predictSum)
+            printG('recentPredictSum', self.recentPredictSum)
+            printG('step',step)
+            printG('max_number',np.max(np.array(lastTable)))
+            printG('table_number_sum', np.sum(np.array(lastTable)))
+            printGTable(lastTable)
+            printG(len(agent.memory), self.global_step, agent.update_target_rate, agent.train_start)
             if len(agent.memory) >= agent.train_start:
-                agent.train_model()
+                for _ in range(10):
+                    train_loss = agent.train_model()
+                    printG('loss', train_loss)
             # 일정 시간마다 타겟모델을 모델의 가중치로 업데이트
             if self.global_step % agent.update_target_rate == 0:
                 agent.update_target_model()
@@ -52,7 +93,7 @@ class Cycle:
                 summary_str = agent.sess.run(agent.summary_op)
                 agent.summary_writer.add_summary(summary_str, e + 1)
 
-                print("episode:", e, "  score:", score, "  memory length:",
+                printG("episode:", e, "  score:", score, "  memory length:",
                         len(agent.memory), "  epsilon:", agent.epsilon,
                         "  global_step:", self.global_step, "  average_q:",
                         agent.avg_q_max / float(step), "  average loss:",
@@ -61,7 +102,7 @@ class Cycle:
                 agent.avg_q_max, agent.avg_loss = 0, 0
             # if e % 10 == 0:
             agent.model.save_weights("./save_model/game2048_dqn.h5")
-        
+    
     def DQN_POLICY(self, state):
         reward = 0
         step = 0
@@ -75,6 +116,7 @@ class Cycle:
             if isPredicted:
                 maxValue = np.max(actions)
                 self.predictSum[np.where(maxValue == actions)[0][0]] += 1
+                self.recentPredictSum[np.where(maxValue == actions)[0][0]] += 1
             action = copyState.maxPossibleAction(actions)
 
             if action != -1:
@@ -82,7 +124,30 @@ class Cycle:
                 copyState.generateNum()
             else:
                 print('impossible')
-        print(step)
+        # print(step)
+        return reward
+
+    def DQN_POLICY_PREDICT(self, state):
+        reward = 0
+        step = 0
+        
+        copyState = copy.deepcopy(state)
+        while copyState.isEndGame()==False:
+            step+=1
+            # self.global_step +=1
+            history = np.array([[y for x in copyState.table for y in x]])
+            actions, isPredicted = self.agent.get_action_predict(history)
+            if isPredicted:
+                maxValue = np.max(actions)
+                self.predictSum[np.where(maxValue == actions)[0][0]] += 1
+            action = copyState.maxPossibleAction(actions)
+
+            if action != -1:
+                reward += copyState.step(action)
+                copyState.generateNum()
+            else:
+                print('impossible')
+        # print(step)
         return reward
     def signal_handler(self, signal, frame):
         self.agent.model.save_weights("./save_model/game2048_dqn.h5")

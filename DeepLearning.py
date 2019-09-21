@@ -9,6 +9,7 @@ from keras import backend as K
 import tensorflow as tf
 import numpy as np
 import random
+import os
 
 EPISODES = 50000
 
@@ -50,9 +51,11 @@ class DQNAgent:
         self.summary_writer = tf.summary.FileWriter(
             'summary/game2048_dqn', self.sess.graph)
         self.sess.run(tf.global_variables_initializer())
+        for fileName in os.listdir('save_model'):
+            if fileName.startswith('game2048_dqn.h5'):
+                self.model.load_weights("save_model/game2048_dqn.h5")
+                self.update_target_model()
 
-        if self.load_model:
-            self.model.load_weights("./save_model/game2048_dqn.h5")
 
     # Huber Loss를 이용하기 위해 최적화 함수를 직접 정의
     def optimizer2(self):
@@ -70,7 +73,7 @@ class DQNAgent:
         loss = K.mean(0.5 * K.square(quadratic_part) + linear_part)
 
         rms = RMSprop(lr=0.00025, epsilon=0.01)
-        updates = rms.get_updates(self.model.trainable_weights, [], loss)
+        updates = rms.get_updates(loss, self.model.trainable_weights)
         train = K.function([self.model.input, a, y], [loss], updates=updates)
 
         return train
@@ -82,9 +85,10 @@ class DQNAgent:
                         #  input_shape=self.state_size))
         # model.add(Conv2D(64, (4, 4), strides=(2, 2), activation='relu'))
         # model.add(Conv2D(64, (3, 3), strides=(1, 1), activation='relu'))
-        model.add(Dense(16, activation='relu', input_shape=self.state_size))
+        model.add(Dense(64, activation='relu', input_shape=self.state_size))
+        model.add(Dense(128, activation='relu'))
+        model.add(Dense(64, activation='relu'))
         model.add(Dense(32, activation='relu'))
-        model.add(Dense(16, activation='relu'))
         model.add(Dense(self.action_size))
         model.summary()
         return model
@@ -102,12 +106,16 @@ class DQNAgent:
         else:
             q_value = self.model.predict(history)
             return np.argsort(-q_value[0]), True
+    
+    def get_action_predict(self, history):
+        q_value = self.model.predict(history)
+        return np.argsort(-q_value[0]), True
 
     # 샘플 <s, a, r, s'>을 리플레이 메모리에 저장
     def append_sample(self, history, action, reward, next_history, dead):
         self.memory.append((history, action, reward, next_history, dead))
     def appends_sample(self, deque2):
-        self.memory + deque2
+        self.memory = self.memory + deque2
 
     # 리플레이 메모리에서 무작위로 추출한 배치로 모델 학습
     def train_model(self):
@@ -132,13 +140,14 @@ class DQNAgent:
 
         for i in range(self.batch_size):
             if dead[i]:
-                target[i] = reward[i]
+                target[i] = reward[i] - 100
             else:
                 target[i] = reward[i] + self.discount_factor * \
                                         np.amax(target_value[i])
 
-        loss = self.optimizer2([history, action, target])
+        loss = self.optimizer([history, action, target])
         self.avg_loss += loss[0]
+        return loss
 
     # 각 에피소드 당 학습 정보를 기록
     def setup_summary(self):
