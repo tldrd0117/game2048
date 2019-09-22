@@ -29,17 +29,7 @@ def printGTable(table):
         printG("%5d %5d %5d %5d"%(table[i][0], table[i][1], table[i][2], table[i][3]))
     printG("------------------------")
 
-def saveDeque(data):
-    with open('data/memory.h5', 'wb') as fileObj:
-        pickle.dump(data, fileObj)
 
-def loadDeque():
-    with open('data/memory.h5', 'rb') as fileObj:
-        data = pickle.load(fileObj)
-        if data:
-            return data
-        else:
-            return None
 
 class Cycle:
     global_step = 0
@@ -102,6 +92,7 @@ class Cycle:
                 agent.avg_q_max, agent.avg_loss = 0, 0
             # if e % 10 == 0:
             agent.model.save_weights("./save_model/game2048_dqn.h5")
+            agent.saveDeque()
     
     def DQN_POLICY(self, state):
         reward = 0
@@ -140,6 +131,7 @@ class Cycle:
             if isPredicted:
                 maxValue = np.max(actions)
                 self.predictSum[np.where(maxValue == actions)[0][0]] += 1
+                self.recentPredictSum[np.where(maxValue == actions)[0][0]] += 1
             action = copyState.maxPossibleAction(actions)
 
             if action != -1:
@@ -151,6 +143,7 @@ class Cycle:
         return reward
     def signal_handler(self, signal, frame):
         self.agent.model.save_weights("./save_model/game2048_dqn.h5")
+        self.agent.saveDeque()
         sys.exit(0)
 if __name__ == "__main__":
     os.environ['KMP_DUPLICATE_LIB_OK']='True'

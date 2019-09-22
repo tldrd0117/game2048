@@ -10,6 +10,7 @@ import tensorflow as tf
 import numpy as np
 import random
 import os
+import pickle
 
 EPISODES = 50000
 
@@ -32,7 +33,7 @@ class DQNAgent:
         self.update_target_rate = 1
         self.discount_factor = 0.99
         # 리플레이 메모리, 최대 크기 400000
-        self.memory = deque(maxlen=400000)
+        self.memory = self.loadDeque()
         self.no_op_steps = 30
         # 모델과 타겟모델을 생성하고 타겟모델 초기화
         self.model = self.build_model()
@@ -55,6 +56,19 @@ class DQNAgent:
             if fileName.startswith('game2048_dqn.h5'):
                 self.model.load_weights("save_model/game2048_dqn.h5")
                 self.update_target_model()
+
+    def saveDeque(self):
+        with open('data/memory.h5', 'wb') as fileObj:
+            pickle.dump(self.memory, fileObj)
+
+    def loadDeque(self):
+        for fileName in os.listdir('data'):
+            if fileName.startswith('memory.h5'):
+                with open('data/memory.h5', 'rb') as fileObj:
+                    data = pickle.load(fileObj)
+                    if data:
+                        return data
+        return deque(maxlen=400000)
 
 
     # Huber Loss를 이용하기 위해 최적화 함수를 직접 정의
