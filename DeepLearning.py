@@ -2,6 +2,7 @@ from keras.layers.convolutional import Conv2D
 from keras.layers import Dense, Flatten
 from keras.optimizers import RMSprop
 from keras.models import Sequential
+from keras.regularizers import l2
 from skimage.transform import resize
 from skimage.color import rgb2gray
 from collections import deque
@@ -28,7 +29,7 @@ class DQNAgent:
         self.exploration_steps = 1000000.
         self.epsilon_decay_step = (self.epsilon_start - self.epsilon_end) \
                                   / self.exploration_steps
-        self.batch_size = 32
+        self.batch_size = 128
         self.train_start = 64
         self.update_target_rate = 1
         self.discount_factor = 0.99
@@ -56,6 +57,7 @@ class DQNAgent:
             if fileName.startswith('game2048_dqn.h5'):
                 self.model.load_weights("save_model/game2048_dqn.h5")
                 self.update_target_model()
+                print(self.model.get_weights())
 
     def saveDeque(self):
         with open('data/memory.h5', 'wb') as fileObj:
@@ -99,10 +101,10 @@ class DQNAgent:
                         #  input_shape=self.state_size))
         # model.add(Conv2D(64, (4, 4), strides=(2, 2), activation='relu'))
         # model.add(Conv2D(64, (3, 3), strides=(1, 1), activation='relu'))
-        model.add(Dense(64, activation='relu', input_shape=self.state_size))
-        model.add(Dense(128, activation='relu'))
-        model.add(Dense(64, activation='relu'))
-        model.add(Dense(32, activation='relu'))
+        model.add(Dense(64, activation='relu', input_shape=self.state_size, kernel_initializer='he_normal', kernel_regularizer=l2(0.001)))
+        model.add(Dense(128, activation='relu', kernel_initializer='he_normal', kernel_regularizer=l2(0.001)))
+        model.add(Dense(64, activation='relu', kernel_initializer='he_normal', kernel_regularizer=l2(0.001)))
+        model.add(Dense(32, activation='relu', kernel_initializer='he_normal', kernel_regularizer=l2(0.001)))
         model.add(Dense(self.action_size))
         model.summary()
         return model
@@ -112,8 +114,8 @@ class DQNAgent:
         self.target_model.set_weights(self.model.get_weights())
 
     # 입실론 탐욕 정책으로 행동 선택
-    def get_action(self, history):
-        if np.random.rand() <= 0.5:
+    def get_action(self, history, predict_percent=0.5):
+        if np.random.rand() < predict_percent:
             li = [0,1,2,3]
             random.shuffle(li)
             return np.array(li), False

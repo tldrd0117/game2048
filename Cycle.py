@@ -117,6 +117,7 @@ class Cycle:
                 print('impossible')
         # print(step)
         return reward
+        
 
     def DQN_POLICY_PREDICT(self, state):
         reward = 0
