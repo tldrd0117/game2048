@@ -29,8 +29,6 @@ def printGTable(table):
         printG("%5d %5d %5d %5d"%(table[i][0], table[i][1], table[i][2], table[i][3]))
     printG("------------------------")
 
-
-
 class Cycle:
     global_step = 0
     def POLICY(self, state):

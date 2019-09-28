@@ -298,7 +298,7 @@ class TableState:
         if isPrint:
             print(rewardCount, rewardScore)
         if rewardCount > 0:
-            return 1
+            return rewardScore
         else:
             return 0
         # 테이블 합계를 이용한 리워드
