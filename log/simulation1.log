@@ -396,3 +396,62 @@ Summary name Total Reward/Episode is illegal; using Total_Reward/Episode instead
 Summary name Average Max Q/Episode is illegal; using Average_Max_Q/Episode instead.
 Summary name Average Loss/Episode is illegal; using Average_Loss/Episode instead.
 predict policy
+
+From /Users/iseongjae/anaconda3/lib/python3.7/site-packages/tensorflow/python/framework/op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+From /Users/iseongjae/anaconda3/lib/python3.7/site-packages/tensorflow/python/ops/math_ops.py:3066: to_int32 (from tensorflow.python.ops.math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.cast instead.
+Summary name Total Reward/Episode is illegal; using Total_Reward/Episode instead.
+Summary name Average Max Q/Episode is illegal; using Average_Max_Q/Episode instead.
+Summary name Average Loss/Episode is illegal; using Average_Loss/Episode instead.
+predict policy
+predictSum [0, 0, 77, 2101833]
+recentPredictSum [0, 0, 77, 2101833]
+step 214
+max_number 128
+table_number_sum 440
+------------------------
+    4   128    32    16
+  128    32    16     8
+   32    16     8     4
+    2     8     4     2
+------------------------
+55732 214 1 64
+loss [4.359584]
+loss [7.586301]
+loss [4.134404]
+loss [4.215519]
+loss [4.73667]
+loss [3.9125128]
+loss [5.2924724]
+loss [3.4952645]
+loss [3.506011]
+loss [3.6992407]
+episode: 1   score: 2108   memory length: 55732   epsilon: 0.9999910000000003   global_step: 214   average_q: 0.0   average loss: 0.2099905571090841
+random + predict policy
+predictSum [0, 105, 11856, 2561890]
+recentPredictSum [0, 105, 11779, 460057]
+step 154
+max_number 64
+table_number_sum 316
+------------------------
+    8    64    32    16
+   64    32    16     8
+   32    16     8     4
+    2     8     4     2
+------------------------
+55886 368 1 64
+loss [4.369045]
+loss [5.932818]
+loss [4.280152]
+loss [4.9906416]
+loss [4.956909]
+loss [7.9192343]
+loss [4.8349185]
+loss [3.151667]
+loss [3.1428752]
+loss [2.9178011]
+episode: 2   score: 1232   memory length: 55886   epsilon: 0.9999820000000006   global_step: 368   average_q: 0.0   average loss: 0.30192247768501185
+random + predict policy
