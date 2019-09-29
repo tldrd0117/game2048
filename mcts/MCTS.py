@@ -31,8 +31,10 @@ class MCTS:
             self.search(root)
         return self.RANKCHILD(root,0)
 
-    def UCTSEARCH_POLICY(self, root, POLICY):
-        budget = root.state.move_case()
+    def UCTSEARCH_POLICY(self, root, step, POLICY):
+        budget = root.state.move_case() 
+        if budget < budget * (step/20):
+            budget = int(budget * (step/20))
         for _ in range(budget):
             front=self.TREEPOLICY(root)
             reward=POLICY(front.state)

@@ -120,7 +120,7 @@ class GameG2048:
             node = copy.deepcopy(current_node)
             finals = []
             beforeTime = time.time()
-            value = mcts.UCTSEARCH_POLICY(node, POLICY)
+            value = mcts.UCTSEARCH_POLICY(node, step,POLICY)
             action = -1
             index = 0
             while action == -1:
@@ -190,7 +190,7 @@ class GameG2048:
             node = copy.deepcopy(current_node)
             finals = []
             beforeTime = time.time()
-            value = mcts.UCTSEARCH_POLICY(node, POLICY)
+            value = mcts.UCTSEARCH_POLICY(node, step,POLICY)
             action = -1
             index = 0
             while action == -1:
