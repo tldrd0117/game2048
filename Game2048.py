@@ -155,6 +155,8 @@ class GameG2048:
             score += reward
             print('step: ', step)
             current_node.state.generateNum()
+            history = history.reshape(1,4,4)
+            next_history = next_history.reshape(1,4,4)
             record.append((history, action, reward, next_history, dead))
 
             

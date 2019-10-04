@@ -21,7 +21,7 @@ class DQNAgent:
         self.render = False
         self.load_model = True
         # 상태와 행동의 크기 정의
-        self.state_size = (16,)
+        self.state_size = (1,4,4,)
         self.action_size = action_size
         # DQN 하이퍼파라미터
         self.epsilon = 1.
@@ -97,13 +97,13 @@ class DQNAgent:
     # 상태가 입력, 큐함수가 출력인 인공신경망 생성
     def build_model(self):
         model = Sequential()
-        # model.add(Conv2D(32, (8, 8), strides=(4, 4), activation='relu',
-                        #  input_shape=self.state_size))
-        # model.add(Conv2D(64, (4, 4), strides=(2, 2), activation='relu'))
-        # model.add(Conv2D(64, (3, 3), strides=(1, 1), activation='relu'))
-        model.add(Dense(64, activation='relu', input_shape=self.state_size, kernel_initializer='he_normal', kernel_regularizer=l2(0.01)))
-        model.add(Dense(128, activation='relu', kernel_initializer='he_normal', kernel_regularizer=l2(0.01)))
-        model.add(Dense(64, activation='relu', kernel_initializer='he_normal', kernel_regularizer=l2(0.01)))
+        model.add(Conv2D(32, (2, 2), padding='same', strides=(1, 1), activation='relu', input_shape=self.state_size, kernel_initializer='he_normal', kernel_regularizer=l2(0.01)))
+        model.add(Conv2D(64, (2, 2), padding='same', strides=(1, 1), activation='relu',kernel_initializer='he_normal', kernel_regularizer=l2(0.01)))
+        model.add(Conv2D(64, (2, 2), padding='same', strides=(1, 1), activation='relu',kernel_initializer='he_normal', kernel_regularizer=l2(0.01)))
+        # model.add(Dense(64, activation='relu', input_shape=self.state_size, kernel_initializer='he_normal', kernel_regularizer=l2(0.01)))
+        # model.add(Dense(128, activation='relu', kernel_initializer='he_normal', kernel_regularizer=l2(0.01)))
+        model.add(Flatten())
+        model.add(Dense(64*16, activation='relu', kernel_initializer='he_normal', kernel_regularizer=l2(0.01)))
         model.add(Dense(32, activation='relu', kernel_initializer='he_normal', kernel_regularizer=l2(0.01)))
         model.add(Dense(self.action_size))
         model.summary()
@@ -140,8 +140,8 @@ class DQNAgent:
 
         mini_batch = random.sample(self.memory, self.batch_size)
 
-        history = np.zeros((self.batch_size, 16))
-        next_history = np.zeros((self.batch_size, 16))
+        history = np.zeros((self.batch_size, 1,4,4))
+        next_history = np.zeros((self.batch_size, 1,4,4))
         target = np.zeros((self.batch_size,))
         action, reward, dead = [], [], []
 

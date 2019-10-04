@@ -101,6 +101,7 @@ class Cycle:
             step+=1
             # self.global_step +=1
             history = np.array([[y for x in copyState.table for y in x]])
+            history = history.reshape(1,1,4,4)
             actions, isPredicted = self.agent.get_action(history)
             if isPredicted:
                 maxValue = np.max(actions)
@@ -126,6 +127,7 @@ class Cycle:
             step+=1
             # self.global_step +=1
             history = np.array([[y for x in copyState.table for y in x]])
+            history = history.reshape(1,1,4,4)
             actions, isPredicted = self.agent.get_action_predict(history)
             if isPredicted:
                 maxValue = np.max(actions)

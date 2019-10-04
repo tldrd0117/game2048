@@ -455,3 +455,183 @@ loss [3.1428752]
 loss [2.9178011]
 episode: 2   score: 1232   memory length: 55886   epsilon: 0.9999820000000006   global_step: 368   average_q: 0.0   average loss: 0.30192247768501185
 random + predict policy
+
+
+
+
+
+
+
+
+
+From /Users/iseongjae/anaconda3/lib/python3.7/site-packages/tensorflow/python/framework/op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+From /Users/iseongjae/anaconda3/lib/python3.7/site-packages/tensorflow/python/ops/math_ops.py:3066: to_int32 (from tensorflow.python.ops.math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.cast instead.
+Summary name Total Reward/Episode is illegal; using Total_Reward/Episode instead.
+Summary name Average Max Q/Episode is illegal; using Average_Max_Q/Episode instead.
+Summary name Average Loss/Episode is illegal; using Average_Loss/Episode instead.
+predict policy
+
+From /Users/iseongjae/anaconda3/lib/python3.7/site-packages/tensorflow/python/framework/op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+From /Users/iseongjae/anaconda3/lib/python3.7/site-packages/tensorflow/python/ops/math_ops.py:3066: to_int32 (from tensorflow.python.ops.math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.cast instead.
+Summary name Total Reward/Episode is illegal; using Total_Reward/Episode instead.
+Summary name Average Max Q/Episode is illegal; using Average_Max_Q/Episode instead.
+Summary name Average Loss/Episode is illegal; using Average_Loss/Episode instead.
+predict policy
+
+From /Users/iseongjae/anaconda3/lib/python3.7/site-packages/tensorflow/python/framework/op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+From /Users/iseongjae/anaconda3/lib/python3.7/site-packages/tensorflow/python/ops/math_ops.py:3066: to_int32 (from tensorflow.python.ops.math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.cast instead.
+Summary name Total Reward/Episode is illegal; using Total_Reward/Episode instead.
+Summary name Average Max Q/Episode is illegal; using Average_Max_Q/Episode instead.
+Summary name Average Loss/Episode is illegal; using Average_Loss/Episode instead.
+predict policy
+
+From /Users/iseongjae/anaconda3/lib/python3.7/site-packages/tensorflow/python/framework/op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+From /Users/iseongjae/anaconda3/lib/python3.7/site-packages/tensorflow/python/ops/math_ops.py:3066: to_int32 (from tensorflow.python.ops.math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.cast instead.
+Summary name Total Reward/Episode is illegal; using Total_Reward/Episode instead.
+Summary name Average Max Q/Episode is illegal; using Average_Max_Q/Episode instead.
+Summary name Average Loss/Episode is illegal; using Average_Loss/Episode instead.
+predict policy
+
+From /Users/iseongjae/anaconda3/lib/python3.7/site-packages/tensorflow/python/framework/op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+From /Users/iseongjae/anaconda3/lib/python3.7/site-packages/tensorflow/python/ops/math_ops.py:3066: to_int32 (from tensorflow.python.ops.math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.cast instead.
+Summary name Total Reward/Episode is illegal; using Total_Reward/Episode instead.
+Summary name Average Max Q/Episode is illegal; using Average_Max_Q/Episode instead.
+Summary name Average Loss/Episode is illegal; using Average_Loss/Episode instead.
+predict policy
+
+From /Users/iseongjae/anaconda3/lib/python3.7/site-packages/tensorflow/python/framework/op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+From /Users/iseongjae/anaconda3/lib/python3.7/site-packages/tensorflow/python/ops/math_ops.py:3066: to_int32 (from tensorflow.python.ops.math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.cast instead.
+Summary name Total Reward/Episode is illegal; using Total_Reward/Episode instead.
+Summary name Average Max Q/Episode is illegal; using Average_Max_Q/Episode instead.
+Summary name Average Loss/Episode is illegal; using Average_Loss/Episode instead.
+predict policy
+
+From /Users/iseongjae/anaconda3/lib/python3.7/site-packages/tensorflow/python/framework/op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+From /Users/iseongjae/anaconda3/lib/python3.7/site-packages/tensorflow/python/ops/math_ops.py:3066: to_int32 (from tensorflow.python.ops.math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.cast instead.
+Summary name Total Reward/Episode is illegal; using Total_Reward/Episode instead.
+Summary name Average Max Q/Episode is illegal; using Average_Max_Q/Episode instead.
+Summary name Average Loss/Episode is illegal; using Average_Loss/Episode instead.
+predict policy
+predictSum [439268, 29095, 5199, 1669]
+recentPredictSum [439268, 29095, 5199, 1669]
+step 201
+max_number 128
+table_number_sum 416
+------------------------
+    4   128    32    16
+  128    32    16     8
+    8    16     8     4
+    2     8     4     2
+------------------------
+56087 201 1 64
+
+From /Users/iseongjae/anaconda3/lib/python3.7/site-packages/tensorflow/python/framework/op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+From /Users/iseongjae/anaconda3/lib/python3.7/site-packages/tensorflow/python/ops/math_ops.py:3066: to_int32 (from tensorflow.python.ops.math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.cast instead.
+Summary name Total Reward/Episode is illegal; using Total_Reward/Episode instead.
+Summary name Average Max Q/Episode is illegal; using Average_Max_Q/Episode instead.
+Summary name Average Loss/Episode is illegal; using Average_Loss/Episode instead.
+predict policy
+predictSum [334960, 17429, 3817, 1400]
+recentPredictSum [334960, 17429, 3817, 1400]
+step 170
+max_number 128
+table_number_sum 354
+------------------------
+   16     4     2    16
+    8   128    64     8
+   64    16     8     4
+    2     8     4     2
+------------------------
+170 170 1 64
+loss [11.888977]
+loss [8.805652]
+loss [6.5209203]
+loss [8.0828085]
+loss [8.41441]
+loss [9.186577]
+loss [8.215567]
+loss [6.3087616]
+loss [9.184994]
+loss [8.933332]
+episode: 1   score: 1608   memory length: 170   epsilon: 0.9999910000000003   global_step: 170   average_q: 0.0   average loss: 0.5031882258022533
+random + predict policy
+predictSum [336030, 30448, 44238, 221675]
+recentPredictSum [1070, 13019, 40421, 220275]
+step 204
+max_number 128
+table_number_sum 428
+------------------------
+    2   128    32    16
+  128    32    16     4
+    2    16     8     2
+   32     4     2     4
+------------------------
+374 374 1 64
+loss [10.189379]
+loss [12.911568]
+loss [9.376371]
+loss [9.649357]
+loss [8.614357]
+loss [9.971775]
+loss [6.820797]
+loss [6.305936]
+loss [7.6947207]
+loss [6.6608267]
+episode: 2   score: 2060   memory length: 374   epsilon: 0.9999820000000006   global_step: 374   average_q: 0.0   average loss: 0.43232885762756945
+random + predict policy
+predictSum [336030, 30449, 44263, 515828]
+recentPredictSum [0, 1, 25, 294153]
+step 214
+max_number 128
+table_number_sum 442
+------------------------
+    2   128    32    16
+    4    64    16     8
+  128    16     8     4
+    2     8     4     2
+------------------------
+588 588 1 64
+loss [14.041313]
+loss [11.209762]
+loss [11.331827]
+loss [11.512285]
+loss [10.716686]
+loss [11.01764]
+loss [6.344017]
+loss [8.860464]
+loss [7.9679623]
+loss [8.228134]
+episode: 3   score: 2168   memory length: 588   epsilon: 0.9999730000000009   global_step: 588   average_q: 0.0   average loss: 0.4730378088550033
+predict policy
