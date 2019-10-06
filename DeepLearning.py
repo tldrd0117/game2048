@@ -21,7 +21,7 @@ class DQNAgent:
         self.render = False
         self.load_model = True
         # 상태와 행동의 크기 정의
-        self.state_size = (1,4,4,)
+        self.state_size = (4,4,1,)
         self.action_size = action_size
         # DQN 하이퍼파라미터
         self.epsilon = 1.
@@ -103,7 +103,7 @@ class DQNAgent:
         # model.add(Dense(64, activation='relu', input_shape=self.state_size, kernel_initializer='he_normal', kernel_regularizer=l2(0.01)))
         # model.add(Dense(128, activation='relu', kernel_initializer='he_normal', kernel_regularizer=l2(0.01)))
         model.add(Flatten())
-        model.add(Dense(64*16, activation='relu', kernel_initializer='he_normal', kernel_regularizer=l2(0.01)))
+        model.add(Dense(256, activation='relu', kernel_initializer='he_normal', kernel_regularizer=l2(0.01)))
         model.add(Dense(32, activation='relu', kernel_initializer='he_normal', kernel_regularizer=l2(0.01)))
         model.add(Dense(self.action_size))
         model.summary()
@@ -140,8 +140,8 @@ class DQNAgent:
 
         mini_batch = random.sample(self.memory, self.batch_size)
 
-        history = np.zeros((self.batch_size, 1,4,4))
-        next_history = np.zeros((self.batch_size, 1,4,4))
+        history = np.zeros((self.batch_size, 4,4,1))
+        next_history = np.zeros((self.batch_size, 4,4,1))
         target = np.zeros((self.batch_size,))
         action, reward, dead = [], [], []
 
