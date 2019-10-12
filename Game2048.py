@@ -143,7 +143,7 @@ class GameG2048:
             #         index+=1
             #         print("Impossible Action")
             #         continue
-            print('action: ', action)
+            print('action: ', action, 'adjust' if index > 0 else '' )
             history = np.array(current_node.state.table).flatten()
             reward = current_node.state.step(action)
             next_history = np.array(current_node.state.table).flatten()
