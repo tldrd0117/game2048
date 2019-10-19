@@ -88,7 +88,7 @@ class DQNAgent:
         linear_part = error - quadratic_part
         loss = K.mean(0.5 * K.square(quadratic_part) + linear_part)
 
-        rms = RMSprop(lr=0.00025, epsilon=0.01)
+        rms = RMSprop(lr=0.000001, epsilon=0.01)
         updates = rms.get_updates(loss, self.model.trainable_weights)
         train = K.function([self.model.input, a, y], [loss], updates=updates)
 
