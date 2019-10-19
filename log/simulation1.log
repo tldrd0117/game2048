@@ -2337,3 +2337,302 @@ loss [26.011908]
 loss [23.467209]
 episode: 18   score: 2288   memory length: 17764   epsilon: 0.9998380000000053   global_step: 3488   average_q: 0.0   average loss: 1.0105972121990725
 predict policy
+
+From /Users/iseongjae/anaconda3/lib/python3.7/site-packages/tensorflow/python/framework/op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+From /Users/iseongjae/anaconda3/lib/python3.7/site-packages/tensorflow/python/ops/math_ops.py:3066: to_int32 (from tensorflow.python.ops.math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.cast instead.
+Summary name Total Reward/Episode is illegal; using Total_Reward/Episode instead.
+Summary name Average Max Q/Episode is illegal; using Average_Max_Q/Episode instead.
+Summary name Average Loss/Episode is illegal; using Average_Loss/Episode instead.
+predict policy
+predictSum [21397, 36905, 148499, 149845]
+recentPredictSum [21397, 36905, 148499, 149845]
+step 165
+max_number 128
+table_number_sum 346
+------------------------
+    2    64    32    16
+  128     4    16     8
+   32    16     8     4
+    2     8     4     2
+------------------------
+17929 165 1 64
+loss [22.613611]
+loss [24.36995]
+loss [22.50333]
+loss [23.745644]
+loss [22.409882]
+loss [25.005215]
+loss [22.439636]
+loss [21.297955]
+loss [19.1111]
+loss [20.454952]
+episode: 1   score: 1524   memory length: 17929   epsilon: 0.9999910000000003   global_step: 165   average_q: 0.0   average loss: 1.3572804422089548
+random + predict policy
+predictSum [36776, 64519, 234144, 258496]
+recentPredictSum [15379, 27614, 85645, 108651]
+step 252
+max_number 128
+table_number_sum 518
+------------------------
+    2   128    64    32
+  128    64    16     8
+    8    32     8     4
+    2    16     4     2
+------------------------
+18181 417 1 64
+loss [23.287422]
+loss [22.319897]
+loss [21.331947]
+loss [23.73287]
+loss [22.436764]
+loss [24.5437]
+loss [23.438816]
+loss [22.83046]
+loss [23.648693]
+loss [23.399231]
+episode: 2   score: 2564   memory length: 18181   epsilon: 0.9999820000000006   global_step: 417   average_q: 0.0   average loss: 0.9165468215942383
+random + predict policy
+predictSum [46759, 84629, 296277, 339003]
+recentPredictSum [9983, 20110, 62133, 80507]
+step 134
+max_number 64
+table_number_sum 278
+------------------------
+    2    64    32     8
+    8    32     8     4
+   64     8     4     2
+   32     4     2     4
+------------------------
+18315 551 1 64
+loss [22.1941]
+loss [23.644924]
+loss [20.4082]
+loss [22.780207]
+loss [18.87989]
+loss [21.25301]
+loss [21.021221]
+loss [21.247177]
+loss [21.725435]
+loss [20.967741]
+episode: 3   score: 1092   memory length: 18315   epsilon: 0.9999730000000009   global_step: 551   average_q: 0.0   average loss: 1.5979246595012608
+predict policy
+predictSum [64891, 115713, 446902, 537719]
+recentPredictSum [18132, 31084, 150625, 198716]
+step 252
+max_number 128
+table_number_sum 522
+------------------------
+    2   128    64    16
+  128     2    32     8
+   64    32    16     4
+    4    16     4     2
+------------------------
+18567 803 1 64
+loss [20.129997]
+loss [20.928974]
+loss [21.65053]
+loss [20.692886]
+loss [25.073097]
+loss [18.174572]
+loss [18.814829]
+loss [19.860851]
+loss [20.27696]
+loss [22.66681]
+episode: 4   score: 2576   memory length: 18567   epsilon: 0.9999640000000012   global_step: 803   average_q: 0.0   average loss: 0.8264662954542372
+random + predict policy
+predictSum [80949, 145833, 537069, 673020]
+recentPredictSum [16058, 30120, 90167, 135301]
+step 235
+max_number 128
+table_number_sum 488
+------------------------
+    2   128    32    16
+  128    64    16     8
+    4    32     8     4
+   32     8     4     2
+------------------------
+18802 1038 1 64
+loss [22.140114]
+loss [24.78681]
+loss [22.443918]
+loss [20.161041]
+loss [21.455746]
+loss [19.730362]
+loss [20.285297]
+loss [20.083174]
+loss [20.088272]
+loss [21.196703]
+episode: 5   score: 2368   memory length: 18802   epsilon: 0.9999550000000015   global_step: 1038   average_q: 0.0   average loss: 0.9037082428627826
+random + predict policy
+predictSum [93780, 172352, 619914, 801463]
+recentPredictSum [12831, 26519, 82845, 128443]
+step 216
+max_number 128
+table_number_sum 444
+------------------------
+    2   128    32    16
+  128     4    16     8
+    4    64     8     4
+   16     8     4     2
+------------------------
+19018 1254 1 64
+loss [20.910688]
+loss [19.772045]
+loss [21.791327]
+loss [17.754456]
+loss [23.68671]
+loss [19.410572]
+loss [19.680729]
+loss [20.81993]
+loss [19.473627]
+loss [24.036234]
+episode: 6   score: 2176   memory length: 19018   epsilon: 0.9999460000000018   global_step: 1254   average_q: 0.0   average loss: 0.9598903567702682
+predict policy
+predictSum [106851, 195925, 758693, 970374]
+recentPredictSum [13071, 23573, 138779, 168911]
+step 189
+max_number 128
+table_number_sum 394
+------------------------
+    4   128    32    16
+  128     8    16     8
+    8    16     8     4
+    4     8     4     2
+------------------------
+19207 1443 1 64
+loss [19.845724]
+loss [23.466434]
+loss [26.91758]
+loss [20.182678]
+loss [24.444294]
+loss [18.477093]
+loss [23.266106]
+loss [21.052074]
+loss [18.436436]
+loss [21.933472]
+episode: 7   score: 1880   memory length: 19207   epsilon: 0.9999370000000021   global_step: 1443   average_q: 0.0   average loss: 1.1535549769325861
+random + predict policy
+predictSum [118062, 218707, 832310, 1089394]
+recentPredictSum [11211, 22782, 73617, 119020]
+step 308
+max_number 256
+table_number_sum 638
+------------------------
+    4   128    64    16
+   32   256    16     8
+    8    64     8     4
+   16     8     4     2
+------------------------
+19515 1751 1 64
+loss [21.684265]
+loss [20.215805]
+loss [19.244476]
+loss [22.409517]
+loss [19.574615]
+loss [21.835384]
+loss [20.715199]
+loss [19.315067]
+loss [19.32056]
+loss [23.042171]
+episode: 8   score: 3512   memory length: 19515   epsilon: 0.9999280000000024   global_step: 1751   average_q: 0.0   average loss: 0.6732372122925597
+random + predict policy
+predictSum [129413, 243172, 916677, 1204881]
+recentPredictSum [11351, 24465, 84367, 115487]
+step 228
+max_number 128
+table_number_sum 470
+------------------------
+    2   128    64    16
+  128    32    16     8
+   32    16     8     4
+    2     8     4     2
+------------------------
+19743 1979 1 64
+loss [25.926624]
+loss [19.275593]
+loss [18.136204]
+loss [19.406275]
+loss [21.092758]
+loss [19.825893]
+loss [19.370132]
+loss [23.551502]
+loss [18.422546]
+loss [24.770073]
+episode: 9   score: 2292   memory length: 19743   epsilon: 0.9999190000000027   global_step: 1979   average_q: 0.0   average loss: 0.9200771984301115
+predict policy
+predictSum [143321, 270433, 1080088, 1409027]
+recentPredictSum [13908, 27261, 163411, 204146]
+step 169
+max_number 128
+table_number_sum 352
+------------------------
+    2   128    16     8
+  128    16     8     4
+   16     8     4     2
+    2     4     2     4
+------------------------
+19912 2148 1 64
+loss [22.462204]
+loss [19.576103]
+loss [24.366934]
+loss [19.908474]
+loss [21.645042]
+loss [20.409601]
+loss [20.741161]
+loss [20.14596]
+loss [23.242937]
+loss [20.269207]
+episode: 10   score: 1724   memory length: 19912   epsilon: 0.999910000000003   global_step: 2148   average_q: 0.0   average loss: 1.258980023085013
+random + predict policy
+predictSum [154299, 296441, 1168128, 1553509]
+recentPredictSum [10978, 26008, 88040, 144482]
+step 245
+max_number 256
+table_number_sum 506
+------------------------
+    2   128    32    16
+  256    32     4     2
+    8     4     2     4
+    2     8     4     2
+------------------------
+20157 2393 1 64
+loss [18.566475]
+loss [22.751396]
+loss [19.781567]
+loss [17.01707]
+loss [22.099035]
+loss [23.048874]
+loss [20.01471]
+loss [21.09534]
+loss [19.156513]
+loss [22.581108]
+episode: 11   score: 2888   memory length: 20157   epsilon: 0.9999010000000033   global_step: 2393   average_q: 0.0   average loss: 0.841273833294304
+random + predict policy
+predictSum [161863, 314051, 1234831, 1654566]
+recentPredictSum [7564, 17610, 66703, 101057]
+step 133
+max_number 64
+table_number_sum 276
+------------------------
+    2    64    32    16
+   64    32     8     2
+    2     4    16     4
+   16     8     4     2
+------------------------
+20290 2526 1 64
+loss [21.692719]
+loss [21.392971]
+loss [19.83562]
+loss [20.033726]
+loss [20.071095]
+loss [21.3182]
+loss [20.619404]
+loss [19.857706]
+loss [22.593346]
+loss [20.101122]
+episode: 12   score: 1072   memory length: 20290   epsilon: 0.9998920000000036   global_step: 2526   average_q: 0.0   average loss: 1.5602699796059973
+predict policy
