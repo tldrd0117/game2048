@@ -3223,3 +3223,38 @@ loss [17.642744]
 loss [16.193687]
 episode: 24   score: 2132   memory length: 25257   epsilon: 0.9997840000000071   global_step: 4967   average_q: 0.0   average loss: 0.8619679579368005
 predict policy
+
+From /Users/iseongjae/anaconda3/lib/python3.7/site-packages/tensorflow/python/framework/op_def_library.py:263: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+From /Users/iseongjae/anaconda3/lib/python3.7/site-packages/tensorflow/python/ops/math_ops.py:3066: to_int32 (from tensorflow.python.ops.math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.cast instead.
+Summary name Total Reward/Episode is illegal; using Total_Reward/Episode instead.
+Summary name Average Max Q/Episode is illegal; using Average_Max_Q/Episode instead.
+Summary name Average Loss/Episode is illegal; using Average_Loss/Episode instead.
+predict policy
+predictSum [807, 7042, 102996, 273284]
+recentPredictSum [807, 7042, 102996, 273284]
+step 182
+max_number 128
+table_number_sum 376
+------------------------
+    2    64    32    16
+  128    32    16     8
+   32    16     8     4
+    4     8     4     2
+------------------------
+25439 182 1 64
+loss [17.008247]
+loss [17.27094]
+loss [16.584427]
+loss [24.39151]
+loss [21.212881]
+loss [18.403934]
+loss [18.196524]
+loss [19.768349]
+loss [18.456646]
+loss [18.53659]
+episode: 1   score: 1660   memory length: 25439   epsilon: 0.9999910000000003   global_step: 182   average_q: 0.0   average loss: 1.0430222500811566
+random + predict policy
